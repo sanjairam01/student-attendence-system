@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Attendance System | Enterprise Portal</title>
+  <link rel="stylesheet" href="/static/login/css/liquid-glass.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .hero-section {
+      text-align: center;
+      max-width: 900px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: 18px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .role-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .role-card:hover {
+      transform: translateY(-5px);
+      border-color: #6366f1;
+      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
+    }
+    .role-icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .bg-sa { background: linear-gradient(135deg, #ef4444, #dc2626); }
+    .bg-adm { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .bg-fac { background: linear-gradient(135deg, #10b981, #059669); }
+    .bg-stu { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+    .bg-par { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+    .stats-section {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .stat-box {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: #818cf8;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-sub);
+      font-size: 13px;
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="liquid-orb liquid-orb-1"></div>
+  <div class="liquid-orb liquid-orb-2"></div>
+
+  <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
+
+  <div style="width: 100%;">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 9999px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); color: #818cf8; font-size: 13px; font-weight: 600; margin-bottom: 24px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Enterprise Role-Based Access Control System
+      </div>
+      <h1 class="hero-title">Smart Attendance Management System</h1>
+      <p class="hero-desc">Secure, scalable multi-tenant platform powered by Go Clean Architecture, JWT tokens, and iOS 26 Liquid Glass design. Select your portal below to sign in.</p>
+    </div>
+
+    <!-- Five Role Portals Grid -->
+    <div class="role-grid">
+      <a href="/login/super-admin" class="role-card">
+        <div class="role-icon-box bg-sa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Super Admin</h3>
+        <p style="font-size: 12px; color: var(--text-sub);">Global System Governance & Settings</p>
+      </a>
+
+      <a href="/login/admin" class="role-card">
+        <div class="role-icon-box bg-adm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Admin Portal</h3>
+        <p style="font-size: 12px; color: var(--text-sub);">Institution & User CRUD Management</p>
+      </a>
+
+      <a href="/login/faculty" class="role-card">
+        <div class="role-icon-box bg-fac">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Faculty Portal</h3>
+        <p style="font-size: 12px; color: var(--text-sub);">Bulk Attendance & Course Reports</p>
+      </a>
+
+      <a href="/login/student" class="role-card">
+        <div class="role-icon-box bg-stu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Student Portal</h3>
+        <p style="font-size: 12px; color: var(--text-sub);">View Attendance & Apply for Leaves</p>
+      </a>
+
+      <a href="/login/parent" class="role-card">
+        <div class="role-icon-box bg-par">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Parent Portal</h3>
+        <p style="font-size: 12px; color: var(--text-sub);">Track Ward Attendance & Alerts</p>
+      </a>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="stats-section">
+      <div class="stat-box">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Isolated Role Engines</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">bcrypt Password Hashing</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">JWT</div>
+        <div class="stat-label">Bearer Token & Refresh</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">75%</div>
+        <div class="stat-label">Deficit Automated Warnings</div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 Smart Attendance Management System. All Rights Reserved. Built with Go & Liquid Glass UI.</p>
+    </footer>
+  </div>
+
+  <script src="/static/login/js/auth-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Email Verification | Smart Attendance System</title>
+  <link rel="stylesheet" href="/static/login/css/liquid-glass.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="liquid-orb liquid-orb-1"></div>
+  <div class="liquid-orb liquid-orb-2"></div>
+
+  <div class="glass-card" style="text-align: center;">
+    <div class="brand-header">
+      <div class="role-badge-icon" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h1 class="brand-title">Email Verification</h1>
+      <p class="brand-subtitle" id="verifyStatusText">Validating your email verification token...</p>
+    </div>
+
+    <div id="actionContainer" style="margin-top: 24px;">
+      <a href="/" class="btn-submit" style="text-decoration: none;">
+        <span>Return to Main Portal</span>
+      </a>
+    </div>
+
+    <div class="card-footer">
+      <a href="/" class="back-home-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back to Portal Home</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="/static/login/js/auth-app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+
+      if (!token) {
+        document.getElementById('verifyStatusText').innerText = "Missing verification token in URL.";
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/v1/auth/verify-email?token=${encodeURIComponent(token)}`);
+        const data = await res.json();
+        if (res.ok && data.success) {
+          document.getElementById('verifyStatusText').innerText = "Your email has been verified! Your account is now active.";
+          Swal.fire('Success', 'Email verified successfully!', 'success');
+        } else {
+          document.getElementById('verifyStatusText').innerText = data.message || "Failed to verify email token.";
+          Swal.fire('Error', data.message || 'Invalid token', 'error');
+        }
+      } catch (err) {
+        document.getElementById('verifyStatusText').innerText = "Server communication error during verification.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{{ define "layout" }}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | Smart Attendance System</title>
+    <!-- Liquid Glass Design System CSS -->
+    <link rel="stylesheet" href="/static/css/variables.css">
+    <link rel="stylesheet" href="/static/css/theme.css">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/components.css">
+    <link rel="stylesheet" href="/static/css/animations.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/landing.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-wrapper">
+        {{ template "sidebar" . }}
+        
+        <div class="app-main">
+            {{ template "navbar" . }}
+
+            <main class="app-content animate-fade-in">
+                {{ template "content" . }}
+            </main>
+
+            {{ template "footer" . }}
+        </div>
+    </div>
+
+    <!-- Liquid Glass Design System JS -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/sidebar.js"></script>
+    <script src="/static/js/notification.js"></script>
+    <script src="/static/js/datatable.js"></script>
+    <script src="/static/js/animation.js"></script>
+    <script src="/static/js/charts.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
+{{ end }}

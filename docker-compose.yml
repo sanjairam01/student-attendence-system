@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # =========================================================
+  # Smart Attendance Core Web & API Engine
+  # =========================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart_attendance_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=SecretEnterprisePassword123!
+      - DB_NAME=smart_attendance_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=super_secret_jwt_key_enterprise_2026_smart_attendance
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - attendance_network
+
+  # =========================================================
+  # MySQL Enterprise Database Instance
+  # =========================================================
+  db:
+    image: mysql:8.0
+    container_name: smart_attendance_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: SecretEnterprisePassword123!
+      MYSQL_DATABASE: smart_attendance_db
+      MYSQL_USER: attendance_user
+      MYSQL_PASSWORD: UserPassword123!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema_production.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./database/seed_production.sql:/docker-entrypoint-initdb.d/2_seed.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pSecretEnterprisePassword123!"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - attendance_network
+
+  # =========================================================
+  # Redis Cache Engine for Session & Rate Limiting
+  # =========================================================
+  redis:
+    image: redis:7.2-alpine
+    container_name: smart_attendance_redis
+    restart: always
+    command: redis-server --appendonly yes --requirepass RedisEnterpriseSecret123!
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "RedisEnterpriseSecret123!", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - attendance_network
+
+networks:
+  attendance_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:

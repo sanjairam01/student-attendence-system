@@ -1,0 +1,70 @@
+/* Smart Attendance System - Global CSS Variables (Apple iOS 26 Liquid Glass) */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette */
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-secondary: #4F46E5;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+  --color-warning: #F59E0B;
+  --color-info: #06B6D4;
+
+  /* Backgrounds Light */
+  --bg-main: #F8FAFC;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+  --bg-glass: rgba(255, 255, 255, 0.65);
+  --bg-input: rgba(241, 245, 249, 0.8);
+  --bg-sidebar: rgba(255, 255, 255, 0.75);
+  --bg-navbar: rgba(255, 255, 255, 0.85);
+
+  /* Typography Colors */
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+
+  /* Borders & Shadows */
+  --border-color: rgba(226, 232, 240, 0.8);
+  --border-glass: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+  --glass-glow: 0 0 25px rgba(37, 99, 235, 0.25);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+
+  /* Dimensions & Blur */
+  --glass-blur: blur(30px) saturate(180%);
+  --border-radius: 24px;
+  --border-radius-sm: 12px;
+  --border-radius-lg: 32px;
+  --sidebar-width: 280px;
+  --sidebar-collapsed: 80px;
+  --navbar-height: 72px;
+
+  /* Typography Fonts */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+}
+
+[data-theme="dark"] {
+  /* Backgrounds Dark */
+  --bg-main: #0F172A;
+  --bg-card: rgba(30, 41, 59, 0.65);
+  --bg-card-hover: rgba(30, 41, 59, 0.85);
+  --bg-glass: rgba(15, 23, 42, 0.75);
+  --bg-input: rgba(15, 23, 42, 0.8);
+  --bg-sidebar: rgba(15, 23, 42, 0.85);
+  --bg-navbar: rgba(15, 23, 42, 0.9);
+
+  /* Typography Colors */
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-light: #64748B;
+
+  /* Borders & Shadows */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-glass: rgba(255, 255, 255, 0.15);
+  --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --glass-glow: 0 0 30px rgba(99, 102, 241, 0.35);
+  --card-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.3);
+}

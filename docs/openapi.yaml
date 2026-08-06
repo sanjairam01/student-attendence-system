@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: Smart Attendance Management System Enterprise API
+  description: High-performance Go (Gin) & React OpenAPI documentation covering Auth, Attendance, AI Diagnostics, Reports, and Role Access.
+  version: 2.5.0
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local Cloud Run Container
+paths:
+  /health:
+    get:
+      summary: System Health Monitoring Check
+      responses:
+        '200':
+          description: System operational
+          content:
+            application/json:
+              example:
+                status: ok
+                uptime_seconds: 86400
+                database: connected
+                memory_mb: 48.5
+
+  /auth/login:
+    post:
+      summary: Authenticate User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: superadmin@university.edu
+                password:
+                  type: string
+                  example: Password123!
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              example:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                user:
+                  id: usr-super-01
+                  role: superadmin
+                  name: System Director
+
+  /attendance/scan:
+    post:
+      summary: Record Attendance Scan
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+                token:
+                  type: string
+                latitude:
+                  type: number
+                longitude:
+                  type: number
+      responses:
+        '200':
+          description: Attendance recorded successfully
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

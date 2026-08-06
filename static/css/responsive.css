@@ -1,0 +1,48 @@
+/* Smart Attendance System - Mobile & Tablet Responsive Breakpoints */
+
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 240px;
+  }
+
+  .app-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+    width: 280px !important;
+  }
+
+  .app-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .app-main {
+    margin-left: 0 !important;
+  }
+
+  .app-navbar {
+    padding: 0 16px;
+  }
+
+  .app-content {
+    padding: 16px;
+  }
+
+  .app-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .dashboard-grid-4 {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .dashboard-grid-2 {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}

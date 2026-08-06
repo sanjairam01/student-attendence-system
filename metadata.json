@@ -1,0 +1,6 @@
+{
+  "name": "Smart Attendance Management System",
+  "description": "Enterprise-grade Student Attendance Management System following Go Clean Architecture with MySQL, Gin, GORM, JWT auth, RBAC, reports, and Docker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
